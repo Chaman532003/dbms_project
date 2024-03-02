@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Student Login - Feedback System</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Student Login</h1>
+    </header>
+    <main class="login-form">
+        <form action="process_login.php" method="post" id = "loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <div id="loginResult"></div>
+        <p>Don't have an account? <a href="students_signup.html">Signup</a></p>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "process_login.php",
+                    data: $("#loginForm").serialize(),
+                    success: function(response) {
+                        $("#loginResult").html(response);
+                        if (response.includes("successful")) {
+                            window.location.href = 'details/details.html';
+                        }
+                    },
+                    error: function() {
+                        $("#loginResult").html("Error processing the request.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

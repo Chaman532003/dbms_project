@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Student Signup - Feedback System</title>
+</head>
+<body>
+    <header>
+        <h1>Student Signup</h1>
+    </header>
+    <main class="signup-form">
+        <form action="process_signup.php" method="post">
+            <label for="usn">USN:</label>
+            <input type="text" id="usn" name="usn" required>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Signup">
+        </form>
+        <p>Already have an account? <a href="students_login.html">Login</a></p>
+    </main>
+</body>
+</html>

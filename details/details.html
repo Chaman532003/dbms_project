@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            padding-top: 60px; 
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c3e50;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            height: 100vh; 
+        }
+
+        .button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            width: calc(50% - 20px); 
+            border-radius: 5px;
+            text-align: center;
+            box-sizing: border-box;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:last-child {
+            width: 100%; 
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+        }
+        a{
+            text-decoration: none;
+        }
+
+       
+    
+    </style>
+</head>
+<body>
+
+<h1>Student Details</h1>
+
+<div class="container">
+    <button class="button"><a href = "">View Attendance</a></button>
+    <button class="button"><a href = ""></a>View IA Marks</a></button>
+    <button class="button"><a href = "feedback/feedback.html">Provide Feedback</a></button>
+</div>
+
+</body>
+</html>
