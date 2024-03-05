@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="feed.css">
+    <title>Teacher Feedback Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Teacher Feedback Form</h1>
+        <form id="feedbackForm" action="process_feedback.php" method="post">
+            <label for="c_id">Course ID:</label>
+        <select id="c_id" name="c_id" required>
+            <option value="21CS51">21CS51</option>
+            <option value="21CS52">21CS52</option>
+            <option value="21CS53">21CS53</option>
+            <option value="21CS54">21CS54</option>
+        </select><br>
+            <!-- Question 1 -->
+            <div class="question">
+                <p>1. How well does the teacher explain complex concepts?</p>
+                <div class="options">
+                    <label for="q1_poor">Poor</label>
+                    <input type="radio" name="q1" id="q1_poor" value="1">
+
+                    <label for="q1_average">Average</label>
+                    <input type="radio" name="q1" id="q1_average" value="2">
+
+                    <label for="q1_good">Good</label>
+                    <input type="radio" name="q1" id="q1_good" value="3">
+
+                    <label for="q1_very_good">Very Good</label>
+                    <input type="radio" name="q1" id="q1_very_good" value="4">
+
+                    <label for="q1_excellent">Excellent</label>
+                    <input type="radio" name="q1" id="q1_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <p>2. To what extent does the teacher engage students in class discussions and activities?</p>
+                <div class="options">
+                    <label for="q2_poor">Poor</label>
+                    <input type="radio" name="q2" id="q2_poor" value="1">
+
+                    <label for="q2_average">Average</label>
+                    <input type="radio" name="q2" id="q2_average" value="2">
+
+                    <label for="q2_good">Good</label>
+                    <input type="radio" name="q2" id="q2_good" value="3">
+
+                    <label for="q2_very_good">Very Good</label>
+                    <input type="radio" name="q2" id="q2_very_good" value="4">
+
+                    <label for="q2_excellent">Excellent</label>
+                    <input type="radio" name="q2" id="q2_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <p>3. How effectively does the teacher use different teaching methods to cater to various learning styles?</p>
+                <div class="options">
+                    <label for="q3_poor">Poor</label>
+                    <input type="radio" name="q3" id="q3_poor" value="1">
+
+                    <label for="q3_average">Average</label>
+                    <input type="radio" name="q3" id="q3_average" value="2">
+
+                    <label for="q3_good">Good</label>
+                    <input type="radio" name="q3" id="q3_good" value="3">
+
+                    <label for="q3_very_good">Very Good</label>
+                    <input type="radio" name="q3" id="q3_very_good" value="4">
+
+                    <label for="q3_excellent">Excellent</label>
+                    <input type="radio" name="q3" id="q3_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <p>4. How organized and clear are the teacher's lesson plans and materials?</p>
+                <div class="options">
+                    <label for="q4_poor">Poor</label>
+                    <input type="radio" name="q4" id="q4_poor" value="1">
+
+                    <label for="q4_average">Average</label>
+                    <input type="radio" name="q4" id="q4_average" value="2">
+
+                    <label for="q4_good">Good</label>
+                    <input type="radio" name="q4" id="q4_good" value="3">
+
+                    <label for="q4_very_good">Very Good</label>
+                    <input type="radio" name="q4" id="q4_very_good" value="4">
+
+                    <label for="q4_excellent">Excellent</label>
+                    <input type="radio" name="q4" id="q4_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <p>5. How approachable is the teacher for addressing individual student concerns or questions?</p>
+                <div class="options">
+                    <label for="q5_poor">Poor</label>
+                    <input type="radio" name="q5" id="q5_poor" value="1">
+
+                    <label for="q5_average">Average</label>
+                    <input type="radio" name="q5" id="q5_average" value="2">
+
+                    <label for="q5_good">Good</label>
+                    <input type="radio" name="q5" id="q5_good" value="3">
+
+                    <label for="q5_very_good">Very Good</label>
+                    <input type="radio" name="q5" id="q5_very_good" value="4">
+
+                    <label for="q5_excellent">Excellent</label>
+                    <input type="radio" name="q5" id="q5_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question">
+                <p>6. To what extent does the teacher provide constructive feedback on assignments and assessments?</p>
+                <div class="options">
+                    <label for="q6_poor">Poor</label>
+                    <input type="radio" name="q6" id="q6_poor" value="1">
+
+                    <label for="q6_average">Average</label>
+                    <input type="radio" name="q6" id="q6_average" value="2">
+
+                    <label for="q6_good">Good</label>
+                    <input type="radio" name="q6" id="q6_good" value="3">
+
+                    <label for="q6_very_good">Very Good</label>
+                    <input type="radio" name="q6" id="q6_very_good" value="4">
+
+                    <label for="q6_excellent">Excellent</label>
+                    <input type="radio" name="q6" id="q6_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question">
+                <p>7. How well does the teacher create a positive and inclusive learning environment?</p>
+                <div class="options">
+                    <label for="q7_poor">Poor</label>
+                    <input type="radio" name="q7" id="q7_poor" value="1">
+
+                    <label for="q7_average">Average</label>
+                    <input type="radio" name="q7" id="q7_average" value="2">
+
+                    <label for="q7_good">Good</label>
+                    <input type="radio" name="q7" id="q7_good" value="3">
+
+                    <label for="q7_very_good">Very Good</label>
+                    <input type="radio" name="q7" id="q7_very_good" value="4">
+
+                    <label for="q7_excellent">Excellent</label>
+                    <input type="radio" name="q7" id="q7_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question">
+                <p>8. How responsive is the teacher to feedback and suggestions from students?</p>
+                <div class="options">
+                    <label for="q8_poor">Poor</label>
+                    <input type="radio" name="q8" id="q8_poor" value="1">
+
+                    <label for="q8_average">Average</label>
+                    <input type="radio" name="q8" id="q8_average" value="2">
+
+                    <label for="q8_good">Good</label>
+                    <input type="radio" name="q8" id="q8_good" value="3">
+
+                    <label for="q8_very_good">Very Good</label>
+                    <input type="radio" name="q8" id="q8_very_good" value="4">
+
+                    <label for="q8_excellent">Excellent</label>
+                    <input type="radio" name="q8" id="q8_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question">
+                <p>9. How effectively does the teacher use technology and multimedia resources in teaching?</p>
+                <div class="options">
+                    <label for="q9_poor">Poor</label>
+                    <input type="radio" name="q9" id="q9_poor" value="1">
+
+                    <label for="q9_average">Average</label>
+                    <input type="radio" name="q9" id="q9_average" value="2">
+
+                    <label for="q9_good">Good</label>
+                    <input type="radio" name="q9" id="q9_good" value="3">
+
+                    <label for="q9_very_good">Very Good</label>
+                    <input type="radio" name="q9" id="q9_very_good" value="4">
+
+                    <label for="q9_excellent">Excellent</label>
+                    <input type="radio" name="q9" id="q9_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question">
+                <p>10. Overall, how would you rate the teacher's effectiveness in facilitating your learning experience?</p>
+                <div class="options">
+                    <label for="q10_poor">Poor</label>
+                    <input type="radio" name="q10" id="q10_poor" value="1">
+
+                    <label for="q10_average">Average</label>
+                    <input type="radio" name="q10" id="q10_average" value="2">
+
+                    <label for="q10_good">Good</label>
+                    <input type="radio" name="q10" id="q10_good" value="3">
+
+                    <label for="q10_very_good">Very Good</label>
+                    <input type="radio" name="q10" id="q10_very_good" value="4">
+
+                    <label for="q10_excellent">Excellent</label>
+                    <input type="radio" name="q10" id="q10_excellent" value="5">
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="button" onclick="calculateAverage()">Submit Feedback</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            const form = document.getElementById('feedbackForm');
+            const radios = form.querySelectorAll('input[type="radio"]:checked');
+            if (radios.length !== 10) {
+        alert('Please answer all questions before submitting feedback.');
+        return;
+    }
+            let total = 0;
+
+            radios.forEach(radio => {
+                total += parseInt(radio.value);
+            });
+
+            const average = Math.min(5, Math.max(1, Math.round(total / radios.length)));
+
+            document.getElementById('result').innerText = `Average: ${average}`;
+            fetch('process_feedback.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ average }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the result or perform any additional actions
+            document.getElementById('result').innerText = `Average: ${average}`;
+            console.log(data); // You can log the server response for debugging
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        }
+    </script>
+</body>
+</html>
