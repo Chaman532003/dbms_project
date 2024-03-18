@@ -34,6 +34,5 @@ if ($result->num_rows > 0) {
 session_start();
 
 $_SESSION['email'] = $email;
-
 $conn->close();
 ?>

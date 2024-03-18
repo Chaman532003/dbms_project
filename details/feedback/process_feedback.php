@@ -4,8 +4,6 @@ session_start();
 
 if (isset($_SESSION['email'])) {
     // Retrieve the email
-    $data = json_decode(file_get_contents('php://input'), true);
-    $average = $data['average'];
     $email = $_SESSION['email'];
 
     $servername = "localhost"; 
@@ -27,12 +25,12 @@ if (isset($_SESSION['email'])) {
         $usn = $row['usn'];
 
         $c_id = $_POST['c_id'];
-        /* $rating = $_POST['rating'];
-        $feedback_text = $_POST['feedback_text']; */
+        $rating = $_POST['rating'];
+        $feedback_text = $_POST['feedback_text'];
 
-        $insert_sql = "INSERT INTO feedback (usn, c_id, average)
-               VALUES ('$usn', '$c_id', '$average')
-               ON DUPLICATE KEY UPDATE average = '$average'";
+        $insert_sql = "INSERT INTO feedback (usn, c_id, rating, feedback_text)
+               VALUES ('$usn', '$c_id', '$rating', '$feedback_text')
+               ON DUPLICATE KEY UPDATE rating = '$rating', feedback_text = '$feedback_text'";
         
         if ($conn->query($insert_sql) === TRUE) {
             header("Location:../details.html");
