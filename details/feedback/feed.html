@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Teacher Feedback Form</h1>
-        <form id="feedbackForm" action="process_feedback.php" method="post">
+        <form id="feedbackForm" action="process_feedback1.php" method="post">
             <label for="c_id">Course ID:</label>
         <select id="c_id" name="c_id" required>
             <option value="21CS51">21CS51</option>
@@ -228,45 +228,30 @@
             </div>
 
             <!-- Submit button -->
-            <button type="button" onclick="calculateAverage()">Submit Feedback</button>
+            <button type="submit">Submit Feedback</button>
         </form>
         <p id="result"></p>
     </div>
 
     <script>
-        function calculateAverage() {
-            const form = document.getElementById('feedbackForm');
-            const radios = form.querySelectorAll('input[type="radio"]:checked');
-            if (radios.length !== 10) {
-        alert('Please answer all questions before submitting feedback.');
-        return;
-    }
-            let total = 0;
-
-            radios.forEach(radio => {
-                total += parseInt(radio.value);
-            });
-
-            const average = Math.min(5, Math.max(1, Math.round(total / radios.length)));
-
-            document.getElementById('result').innerText = `Average: ${average}`;
-            fetch('process_feedback.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ average }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Display the result or perform any additional actions
-            document.getElementById('result').innerText = `Average: ${average}`;
-            console.log(data); // You can log the server response for debugging
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            
+            var questionGroups = document.querySelectorAll('input[type="radio"][name^="q"]');
+            
+            
+            for (var i = 0; i < questionGroups.length; i++) {
+                var group = questionGroups[i].name;
+                
+                
+                if (!document.querySelector('input[type="radio"][name="' + group + '"]:checked')) {
+                   
+                    event.preventDefault();
+                    alert("Please answer all questions before submitting.");
+                    return;
+                }
+            }
         });
-        }
-    </script>
+        </script>
+        
 </body>
 </html>
