@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['email'] = 'kiran@gmail.com';
+//$_SESSION['email'] = 'svn@gmail.com';
 
 // Function to connect to MySQL database
 function connectToDatabase($servername, $username, $password, $dbname) {

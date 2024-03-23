@@ -1,7 +1,8 @@
 <?php
 // Start session
 session_start();
-$_SESSION['usn']='1sj21cs007';
+//$_SESSION['usn']='1sj21cs007';
+$email = $_SESSION['email'];
 
 // Function to connect to MySQL database
 function connectToDatabase($servername, $username, $password, $dbname) {
@@ -40,6 +41,22 @@ $password = "";
 $dbname = "project";
 
 $conn = connectToDatabase($servername, $username, $password, $dbname);
+
+$sql = "SELECT usn FROM student WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if result exists
+if ($result->num_rows > 0) {
+    // Fetch and display the USN value
+    $row = $result->fetch_assoc();
+    $usn = $row["usn"];
+    $_SESSION['usn'] = $usn;
+} else {
+    echo "No records found for email $email";
+}
 
 // Check if user is logged in
 if (isset($_SESSION['usn'])) {
