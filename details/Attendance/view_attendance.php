@@ -42,7 +42,8 @@
 
     $conn = connectToDatabase($servername, $username, $password, $dbname);
 
-   // $_SESSION['email'] = 'amoghrgowda09@gmail.com';
+ //$_SESSION['email'] = 'amoghrgowda09@gmail.com';
+ //$_SESSION['usn'] = '1sj21cs007';
 
 
     if(isset($_SESSION['email'])) {
@@ -75,7 +76,7 @@
         $cid = getCidByUsn($conn, $usn);
 $attendance = getAttendanceByUsn($conn, $usn);
 
-echo "Your attendance is: <br>";
+echo "Your(".$usn.")". " attendance is: <br>";
 
 // Check if both arrays have the same length
 if (count($cid) == count($attendance)) {

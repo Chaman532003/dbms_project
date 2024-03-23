@@ -1,66 +1,65 @@
 <?php
-    // Start session
-    session_start();
+// Start session
+session_start();
+$_SESSION['usn']='1sj21cs007';
 
-    // Function to connect to MySQL database
-    function connectToDatabase($servername, $username, $password, $dbname) {
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+// Function to connect to MySQL database
+function connectToDatabase($servername, $username, $password, $dbname) {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    return $conn;
+}
+
+// Function to retrieve ia marks for logged-in student based on usn
+function getIAMarksByUsn($conn, $usn) {
+    $sql = "SELECT c_id, ia1, ia2, ia3 FROM enrolled WHERE usn = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $usn);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $marksArray = array(); // Initialize an array to store marks
+
+    if ($result->num_rows > 0) {
+        // Loop through each row in the result set and fetch marks
+        while ($row = $result->fetch_assoc()) {
+            $marksArray[] = $row;
         }
-        return $conn;
-    }
-
-    // Function to fetch IA marks for a particular email ID
-    function fetchIAMarksByEmail($conn, $email) {
-        // Prepare SQL statement
-        $sql = "SELECT IA_marks1, IA_marks2, IA_marks3 FROM student WHERE email = ?";
-        $stmt = $conn->prepare($sql);
-        
-        // Bind parameters
-        $stmt->bind_param("s", $email);
-        
-        // Execute statement
-        $stmt->execute();
-        
-        // Bind result variables
-        $stmt->bind_result($ia_marks1, $ia_marks2, $ia_marks3);
-        
-        // Fetch result
-        $stmt->fetch();
-        
-        // Close statement
-        $stmt->close();
-        
-        // Return IA marks as an array
-        return array($ia_marks1, $ia_marks2, $ia_marks3);
-    }
-
-    // Main code execution starts here
-    $servername = "localhost"; 
-    $username = "root";
-    $password = "";
-    $dbname = "project";
-
-    $conn = connectToDatabase($servername, $username, $password, $dbname);
-
-   // $_SESSION['email'] = 'chaman@gmail.com';
-
-
-    // Check if user is logged in and email is set in session
-    if(isset($_SESSION['email'])) {
-        $email = $_SESSION['email'];
-        // Fetch IA marks for the logged-in user
-        $ia_marks = fetchIAMarksByEmail($conn, $email);
-        
-        // Display IA marks to the user
-        echo "IA Marks 1: " . $ia_marks[0] . "<br>";
-        echo "IA Marks 2: " . $ia_marks[1] . "<br>";
-        echo "IA Marks 3: " . $ia_marks[2] . "<br>";
+        return $marksArray; // Return the array of marks
     } else {
-        echo "You are not logged in.";
+        return "0 results";
     }
+}
 
-    // Close MySQL connection
-    $conn->close();
+// Main code execution starts here
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "project";
+
+$conn = connectToDatabase($servername, $username, $password, $dbname);
+
+// Check if user is logged in
+if (isset($_SESSION['usn'])) {
+    $usn = $_SESSION['usn'];
+    $marks = getIAMarksByUsn($conn, $usn);
+
+    echo "Your marks are: <br>";
+    echo '<table border="1"><tr><th>Subject code</th><th>IA1</th><th>IA2</th><th>IA3</th></tr>';
+    foreach ($marks as $row) {
+        echo '<tr>';
+        echo '<td>' . $row['c_id'] . '</td>';
+        echo '<td>' . $row['ia1'] . '</td>';
+        echo '<td>' . $row['ia2'] . '</td>';
+        echo '<td>' . $row['ia3'] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+} else {
+    echo "You are not logged in.";
+}
+
+$conn->close();
 ?>
