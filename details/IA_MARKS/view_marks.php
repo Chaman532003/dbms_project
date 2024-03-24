@@ -63,18 +63,18 @@ if (isset($_SESSION['usn'])) {
     $usn = $_SESSION['usn'];
     $marks = getIAMarksByUsn($conn, $usn);
 
-    echo "Your marks are: <br>";
-    echo '<table border="1"><tr><th>Subject code</th><th>IA1</th><th>IA2</th><th>IA3</th></tr>';
+    echo '<div style="width: 100%; text-align: center; font-size: 24px; margin-bottom: 20px;">Your marks are:</div>';
+    echo '<table border="1" style="border-collapse: collapse; width: 80%; margin: 0 auto;">';
+    echo '<tr style="background-color: #333333; color: #ffffff; text-align: center;"><th style="padding: 10px;">Subject code</th><th style="padding: 10px;">IA1</th><th style="padding: 10px;">IA2</th><th style="padding: 10px;">IA3</th></tr>';
+    $i = 0;
     foreach ($marks as $row) {
-        echo '<tr>';
-        echo '<td>' . $row['c_id'] . '</td>';
-        echo '<td>' . $row['ia1'] . '</td>';
-        echo '<td>' . $row['ia2'] . '</td>';
-        echo '<td>' . $row['ia3'] . '</td>';
-        echo '</tr>';
+        $i++;
+        echo '<tr style="background-color: ' . ($i % 2 == 0 ? '#444444' : '#555555') . '; color: #ffffff; text-align: center;"><td style="padding: 10px; border: 1px solid #ffffff;">' . $row['c_id'] . '</td><td style="padding: 10px; border: 1px solid #ffffff;">' . $row['ia1'] . '</td><td style="padding: 10px; border: 1px solid #ffffff;">' . $row['ia2'] . '</td><td style="padding: 10px; border: 1px solid #ffffff;">' . $row['ia3'] . '</td></tr>';
     }
     echo '</table>';
-} else {
+}
+
+ else {
     echo "You are not logged in.";
 }
 

@@ -46,20 +46,23 @@ function displayStudentAttendanceForm($conn) {
     echo '<form method="post" action="attendence.php">';
     // Check if any options are found
     if ($result->num_rows > 0) {
-        echo '<select name="c_id">';
+        echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '" style="text-align: center;">'; // Center the form horizontally
+        echo '<select name="c_id" style="padding: 10px; border-radius: 5px; background-color: #f0f0f0; border: 1px solid #ccc; margin-bottom: 10px;">'; // Style the select dropdown
         // Output options for each row in the result set
         while ($row = $result->fetch_assoc()) {
             echo '<option value="' . $row["c_id"] . '">' . $row["c_id"] . '</option>';
         }
         echo '</select>';
-        echo '<input type="submit" value="Select course">';
+       
+        echo '<input type="submit" value="Select course" style="padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: #ffffff; border: none; cursor: pointer;">'; // Style the submit button
         echo '</form>'; // Close the form tag
-        if(isset($_POST['c_id'])) {
+        if (isset($_POST['c_id'])) {
             $_SESSION['c_id'] = $_POST['c_id'];
         }
     } else {
         echo 'No options available';
     }
+    
 }
 
 // Function to handle form submission
@@ -72,17 +75,17 @@ function handleFormSubmission($conn) {
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 echo '<form method="post" action="attendence.php">';
-                echo '<table border=1>';
-                echo '<tr><th>USN</th><th>Attendance</th></tr>';
+                echo '<table style="border-collapse: collapse; width: 100%; border: 1px solid #000;">';
+                echo '<tr style="background-color: #333333; color: #ffffff;"><th style="padding: 10px;">USN</th><th style="padding: 10px;">Attendance</th></tr>';
                 while ($row = $result->fetch_assoc()) {
-                    echo '<tr>';
-                    echo '<td>' . $row["usn"] . '</td>';
-                    echo '<td><input type="checkbox" name="attendance[]" value="' . $row["usn"] . '"></td>';
+                    echo '<tr style="background-color: #444444; color: #ffffff;">';
+                    echo '<td style="padding: 10px; border: 1px solid #ffffff;">' . $row["usn"] . '</td>';
+                    echo '<td style="padding: 10px; border: 1px solid #ffffff;"><input type="checkbox" name="attendance[]" value="' . $row["usn"] . '"></td>';
                     echo '</tr>';
                 }
                 echo '</table>';
-                echo '<input type="submit" value="Give attendance">';
-                echo '</form>'; // Close the form tag
+                echo '<div style="text-align: center; margin-top: 10px;"><input type="submit" value="Give attendance" style="padding: 10px 20px; background-color: #4CAF50; color: #ffffff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;"></div>';
+                echo '</form>'; 
             } else {
                 echo "0 results";
             }

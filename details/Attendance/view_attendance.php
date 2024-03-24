@@ -76,16 +76,21 @@
         $cid = getCidByUsn($conn, $usn);
 $attendance = getAttendanceByUsn($conn, $usn);
 
-echo "Your(".$usn.")". " attendance is: <br>";
+echo '<div style="width: 100%; text-align: center; font-size: 24px; margin-bottom: 20px;">Your (' . $usn . ') attendance is:</div>';
 
 // Check if both arrays have the same length
 if (count($cid) == count($attendance)) {
-    // Iterate over both arrays simultaneously
-    echo "<table border=1><th>Subject code</th><th>Attendance</th>";
+    echo '<div style="width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #1a1a1a;">';
+    echo '<table style="border-collapse: collapse; width: 80%; color: #ffffff; text-align: center;">';
+    echo '<tr style="background-color: #333333;"><th style="padding: 20px; border: 1px solid #ffffff; font-size: 20px;">Subject code</th><th style="padding: 20px; border: 1px solid #ffffff; font-size: 20px;">Attendance</th></tr>';
     for ($i = 0; $i < count($cid); $i++) {
-        echo "<tr><td>" . $cid[$i] . "</td><td>" . $attendance[$i] . "</td></tr><br>";
-    }echo "</table>";
-} else {
+        echo '<tr style="background-color: ' . ($i % 2 == 0 ? '#444444' : '#555555') . ';"><td style="padding: 10px; border: 1px solid #ffffff;">' . $cid[$i] . '</td><td style="padding: 10px; border: 1px solid #ffffff;">' . $attendance[$i] . '</td></tr>';
+    }
+    echo '</table>';
+    echo '</div>';
+}
+
+ else {
     echo "Error: Subject codes and attendance values don't match.";
 }
 

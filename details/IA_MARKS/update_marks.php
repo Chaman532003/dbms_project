@@ -46,15 +46,22 @@ function displayStudentMarksForm($conn) {
     echo '<form method="post" action="'.$_SERVER['PHP_SELF'].'">';
     // Check if any options are found
     if ($result->num_rows > 0) {
-        echo '<select name="c_id">';
+        echo '<div style="width: 100%; display: flex; justify-content: center;">'; // Center the form horizontally
+        echo '<form method="post" action="your_action.php" style="text-align: center; width: 60%;">'; // Center the form horizontally and make it 60% wide
+        echo '<select name="c_id" style="padding: 10px; border-radius: 8px; background-color: #333333; color: #ffffff; border: 2px solid #ffffff; width: 100%;">'; // Reduce padding and border-radius, set width to 100%
         // Output options for each row in the result set
         while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . $row["c_id"] . '">' . $row["c_id"] . '</option>';
+            echo '<option value="' . $row["c_id"] . '" style="background-color: #333333; color: #ffffff;">' . $row["c_id"] . '</option>';
         }
         echo '</select>';
-        echo '<input type="submit" name="select_course" value="Select course">';
+        echo '<br>'; 
+        echo '<input type="submit" name="select_course" value="Select course" style="padding: 12px 25px; border-radius: 8px; background-color: #4CAF50; color: #ffffff; border: none; cursor: pointer; margin-top: 10px; width: 100%; font-size: 16px;">'; // Reduce padding, increase border-radius, set width to 100%
         echo '</form>'; // Close the form tag
-    } else {
+        echo '</div>'; // Close the div tag
+    }
+    
+    
+     else {
         echo 'No options available';
     }
 }
@@ -68,25 +75,25 @@ function handleFormSubmission($conn) {
         $sql = "SELECT usn, ia1, ia2, ia3 FROM enrolled, teacher t, teaches WHERE t.email='$email' AND t.s_id=teaches.s_id AND teaches.c_id=enrolled.c_id AND enrolled.c_id='$c_id'";        
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            echo '<form method="post" action="'.$_SERVER['PHP_SELF'].'">';
-            echo '<table border=1>';
-            echo '<tr><th>USN</th><th>IA1</th><th>IA2</th><th>IA3</th></tr>';
+            echo '<form method="post" action="'.$_SERVER['PHP_SELF'].'" style="text-align: center;">'; // Center the form horizontally
+            echo '<table border="1" style="border-collapse: collapse; width: 80%; margin: 0 auto;">'; // Center the table horizontally and set its width to 80%
+            echo '<tr style="background-color: #333333; color: #ffffff; text-align: center;"><th style="padding: 10px;">USN</th><th style="padding: 10px;">IA1</th><th style="padding: 10px;">IA2</th><th style="padding: 10px;">IA3</th></tr>';
             while ($row = $result->fetch_assoc()) {
-                echo '<tr>';
-                echo '<td>' . $row["usn"] . '</td>';
-                echo '<td><input type="text" name="ia1[]" value="' . $row["ia1"] . '"></td>';
-                echo '<td><input type="text" name="ia2[]" value="' . $row["ia2"] . '"></td>';
-                echo '<td><input type="text" name="ia3[]" value="' . $row["ia3"] . '"></td>';
-                echo '<td><input type="hidden" name="usn[]" value="' . $row["usn"] . '"></td>'; // Store USN in a hidden field
+                echo '<tr style="background-color: #444444; color: #ffffff; text-align: center;">'; // Alternate row background color
+                echo '<td style="padding: 10px;"><input type="text" name="usn[]" value="' . $row["usn"] . '" readonly></td>'; // USN field is readonly
+                echo '<td style="padding: 10px;"><input type="text" name="ia1[]" value="' . $row["ia1"] . '"></td>';
+                echo '<td style="padding: 10px;"><input type="text" name="ia2[]" value="' . $row["ia2"] . '"></td>';
+                echo '<td style="padding: 10px;"><input type="text" name="ia3[]" value="' . $row["ia3"] . '"></td>';
                 echo '</tr>';
             }
             echo '</table>';
-            echo '<input type="submit" name="update_marks" value="Give marks">';
+            echo '<input type="submit" name="update_marks" value="Give marks" style="padding: 12px 25px; border-radius: 8px; background-color: #4CAF50; color: #ffffff; border: none; cursor: pointer; margin-top: 20px;">'; // Style the submit button
             echo '</form>'; // Close the form tag
-
+        
             // Store form data in session
             $_SESSION['form_data'] = true;
-        } else {
+        }
+         else {
             echo "0 results";
         }
     }
